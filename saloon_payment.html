@@ -1,0 +1,29 @@
+<html>
+<head>
+    
+    <link rel="stylesheet" href="all_father.css">
+    <link rel="stylesheet" href="saloon_payment.css">
+</head>
+<body onload="showoptions()">
+    <script>
+        function showoptions() {
+                document.getElementById("txtHint").innerHTML="hello";
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","load_due.php?",true);
+                xmlhttp.send();
+            }   
+    </script>
+    <h1>Saloons under you are,</h1>
+    <form action="saloon_payment.php" method="post">
+        <div id="txtHint">Date should be here</div>
+        <label for="Cost">Payment:</label>
+        <input type="number" name="Cost" id="Cost" value=0></input>
+        <input type="submit" value="Pay">
+    </form>
+</body>
+</html>

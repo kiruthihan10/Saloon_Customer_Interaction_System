@@ -1,0 +1,38 @@
+div{
+    color:lime;
+    margin: auto;
+    text-align:center;
+    font-size:200;
+}
+
+button {
+    width: 100%;
+    background-color: rgb(57, 197, 243);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#logout {
+    color: red;
+}.absolute {
+    position: absolute;
+    bottom: 10px;
+}
+
+h1 {
+    color: rgb(147, 207, 150);
+    margin: auto;
+    border: 1px solid rgb(226, 238, 171);
+    text-align:center;
+    font-size:50;
+}
+
+h2 {
+    color: pink;
+    margin: auto;
+    text-align:center;
+}

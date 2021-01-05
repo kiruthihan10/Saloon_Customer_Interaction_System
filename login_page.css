@@ -1,0 +1,30 @@
+h1 {
+    color: maroon;
+    margin: auto;
+    border: 1px solid red;
+    text-align:center;
+    font-size:50;
+}
+
+h2 {
+    color: pink;
+    margin: auto;
+    text-align:center;
+}
+
+h3 {
+    color: blue;
+    margin: auto;
+    text-align:center;
+}
+
+button {
+    width: 100%;
+    background-color: rgb(57, 197, 243);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

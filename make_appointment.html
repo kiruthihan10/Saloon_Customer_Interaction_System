@@ -1,0 +1,163 @@
+<html>
+<head>
+<link rel="stylesheet" href="all_father.css">
+<link rel="stylesheet" href="make_appointment.css">
+</head>
+<body>
+
+
+    <script>
+        function haircut_check(checkbox){
+            var status = checkbox.checked;
+            if (status){
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)+150
+            }
+            else{
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-150
+            }
+        }
+
+        function shave_check(checkbox){
+            var status = checkbox.checked;
+            if (status){
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)+100
+            }
+            else{
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-100
+            }
+        }
+
+        function massage_check(checkbox){
+            var status = checkbox.checked;
+            if (status){
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)+75
+            }
+            else{
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-75
+            }
+        }
+
+        function dye_check(checkbox){
+            var status = checkbox.checked;
+            if (status){
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)+200
+            }
+            else{
+                document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-200
+            }
+        }
+
+        function showoptions() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+                };
+                
+                
+                var d = document.getElementById("Date").value;
+                var t = document.getElementById("Time").value;
+                var loc = document.getElementById("District").value;
+                var rating = document.getElementById("Rating").value;
+                var shave = document.getElementById("Shave").value;
+                var hair_cut = document.getElementById("Hair_Cut").value;
+                var massage = document.getElementById("Massage").value;
+                var dye = document.getElementById("Dye").value;
+                xmlhttp.open("GET","make_appointment_check.php?Date="+d+"&Time="+t+"&Location="+loc+"&Rating="+rating+"&Shave="+shave+"&Hair_Cut="+hair_cut+"&Massage="+massage+"&Dye="+dye,true);
+                xmlhttp.send();
+            }
+
+        function showoptions(){
+            return window.setInterval(showoptions, 1000);
+        }
+        
+
+    </script>
+
+<h1>Fill your preferences to check availablity</h1>
+
+<form method = "post" action="make_appointment.php">
+
+    <label for="District">Which district you will be?</label>
+    <select id="District" name="District">
+        <option value="Jaffna">Jaffna</option>
+        <option value="Kilinochchi">Kilinochchi</option>
+        <option value="Mannar">Mannar</option>
+        <option value="Mullaitivu">Mullaitivu</option>
+        <option value="Vavuniya">Vavuniya</option>
+        <option value="Puttalam">Puttalam</option>
+        <option value="Kurunegala">Kurunegala</option>
+        <option value="Gampaha">Gampaha</option>
+        <option value="Trincomalee">Trincomalee</option>
+        <option value="Batticaloa">Batticaloa</option>
+        <option value="Ampara">Ampara</option>
+        <option value="Galle">Galle</option>
+        <option value="Hambantota">Hambantota</option>
+        <option value="Colombo">Colombo</option>
+        <option value="Kandy">Kandy</option>
+        <option value="Nuwara Eliya">Nuwara Eliya</option>
+        <option value="Matale">Matale</option>
+        <option value="Kegalle">Kegalle</option>
+        <option value="Anuradhapura">Anuradhapura</option>
+        <option value="Polonnaruwa">Polonnaruwa</option>
+        <option value="Matara">Matara</option>
+        <option value="Kalutara">Kalutara</option>
+        <option value="Badulla">Badulla</option>
+        <option value="Kegalle">Kegalle</option>
+        <option value="Ratnapura">Ratnapura</option>
+    </select>
+
+    <label for="Rating">How much Rating do you Expect?</label>
+    <select id="Rating" name="Rating">
+        <option value=5>5</option>
+        <option value=4>4+</option>
+        <option value=3>3+</option>
+        <option value=2>2+</option>
+        <option value=1>1+</option>
+        <option value=0 selected>any</option>
+    </select>
+
+    <label for="Time">When do you want to book?</label>
+    <input type="time" id="Time" name="Time" value="11:17">
+
+    <label for="Date">Date of the Appointment</label>
+    <input type="date" id="Date" name="Date" value="1997-10-10">
+
+    
+    <center><label for="Hair_Cut">Do you need a hair cut?</label></center>
+    <input type="checkbox" id="Hair_Cut" name="service[]" value = "Hair_Cut" onchange="haircut_check(this)">
+
+    <br>
+
+    <center><label for="Shave">Do you need a Shave?</label></center>
+    <input type="checkbox" id="Shave" name="service[]" value = "Shave" onchange="shave_check(this)">
+
+    <br>
+
+    <center><label for="Massage">Do you need a Massage?</label></center>
+    <input type="checkbox" id="Massage" name="service[]" value = "Massage" onchange="massage_check(this)">
+
+    <br>
+    
+    <center><label for="Dye">Do you need a Dye?</label></center>
+    <input type="checkbox" id="Dye" name="service[]" value = "Dye" onchange="dye_check(this)">
+    
+    <div id="txtHint"><b><h2>availablity will be displayed here...</h2></b></div>
+    <input type="submit" value="Book">
+    
+</form>
+
+
+<button id="check" onclick="showoptions()" >Check availablity</button>
+
+<h2>
+    Total Price is
+</h2>
+
+<h3 id="price">
+    00
+</h3>
+
+</body>
+</html>

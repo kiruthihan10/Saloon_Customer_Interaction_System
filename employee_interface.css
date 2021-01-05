@@ -1,0 +1,20 @@
+h1 {
+    color: maroon;
+    margin: auto;
+    border: 1px solid red;
+    text-align:center;
+    font-size:50;
+}
+
+h2 {
+    color: rgb(221, 17, 51);
+    margin: auto;
+    text-align:center;
+}
+
+div{
+    color:red;
+    margin: auto;
+    text-align:center;
+    font-size:200;
+}

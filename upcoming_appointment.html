@@ -1,0 +1,25 @@
+<html>
+<head>
+    
+    <link rel="stylesheet" href="all_father.css">
+    <link rel="stylesheet" href="make_appointment.css">
+</head>
+<body onload="showoptions()">
+    <script>
+        function showoptions() {
+                document.getElementById("txtHint").innerHTML="hello";
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+                };
+                xmlhttp.open("GET","upcoming_appointment.php?",true);
+                xmlhttp.send();
+            }   
+    </script>
+    <h1>Your upcoming Appointments are</h1>
+
+    <div id="txtHint">Date should be here</div>
+</body>
+</html>

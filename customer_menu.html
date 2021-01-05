@@ -1,0 +1,44 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="customer_menu.css">
+<link rel="stylesheet" href="all_father.css">
+
+
+<script>
+    function showHint() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("rating").innerHTML = this.responseText;
+        }
+        }
+        xmlhttp.open("GET", "rating_retrive.php", true);
+        xmlhttp.send();
+}
+</script>
+
+</head>
+<body onload=showHint()>
+
+<h1>Welcome Customer</h1>
+<!-- Replace Customer with Customer name in jscript or PHP-->
+
+
+<a href="make_appointment.html"><button type="button">Make a New Appointment</button></a><!-- Haven't done yet-->
+<a href="upcoming_appointment.html"><button type="button">View Upcomming Appointments</button></a><!-- Haven't done yet-->
+<a href="change_details.html"><button type="button">Change your personal Info</button></a>
+<a href="View_past_appointments.html"><button type="button">View past Appointments</button></a>
+<br>
+<br>
+<h2>
+    Your Current Rating is
+</h2>
+<br>
+<div id="rating">
+    4.8
+</div>
+<!-- Rating for each user come here-->
+<a href="logout.php"><button type="button" id="logout">Logout</button></a>
+</body>
+</html>
