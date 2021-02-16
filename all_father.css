@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Tangerine|Aguafina+Script|Alegreya+SC|Amatic+SC|Arbutus|Audiowide|Calligraffitti&display=swap');
+
 input[type=submit] {
     width: 100%;
     background-color: #4CAF50;
@@ -7,6 +9,8 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 30;
+    font-family: "Calligraffitti",serif;
 }
   
 input[type=submit]:hover {
@@ -21,11 +25,15 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: "Amatic SC", serif;
+    font-size: 60;
   }
 
 label {
-    color:rgb(169, 240, 169);
-    font-size: 20;
+    color:darkgreen;
+    font-size: 40;
+    font-family: 'Tangerine', serif;
+    text-shadow: 4px 4px 4px #aaa;
 }
   
 input[type=password], select {
@@ -36,6 +44,7 @@ input[type=password], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 40;
 }
 
 input[type=date], select {
@@ -46,6 +55,7 @@ input[type=date], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: "Arbutus",serif;
 }
 
 input[type=time], select {
@@ -56,6 +66,7 @@ input[type=time], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: "Arbutus",serif;
 }
 
 input[type=checkbox], select {
@@ -78,6 +89,8 @@ input[type=select], select {
     border-radius: 4px;
     box-sizing: border-box;
     transform: scale(1);
+    font-size: 20;
+    font-family: "Audiowide",serif;
 }
 
 button {
@@ -89,23 +102,36 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: "Calligraffitti",serif;
+    font-size: 30;
+}
+
+button:hover 
+{
+    background-color:lightgreen;
+    color: black
 }
   
 body {
-    background: linear-gradient(to bottom, gray, black 100%);
+    background: linear-gradient(to bottom, lightblue, pink 100%);
 }
 
 h1 {
-    color: rgb(147, 207, 150);
+    color: green;
     margin: auto;
     border: 1px solid rgb(226, 238, 171);
     text-align:center;
     font-size:50;
+    font-family: "Aguafina Script", serif;
 }
 
 h2 {
-    color: pink;
+    color: blue;
     margin: auto;
     text-align:center;
+    font-family: "Alegreya SC", serif;
 }
 
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
