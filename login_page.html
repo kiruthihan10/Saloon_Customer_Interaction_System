@@ -3,25 +3,57 @@
 <link rel="stylesheet" href="login_page.css">
 <link rel="stylesheet" href="all_father.css">
 </head>
+<style>
+  #text {display:none;color:red}
+  img
+  {
+    float:left;
+  }
+</style>
 <body>
 
 <h1>HSCMS</h1>
-
-<form action="login_page.php" method="post">
-  <label for="uname">User Name</label>
-  <input type="text" id="uname" name="username" placeholder="Your User name..">
-
-  <label for="pword">Password</label>
-  <input type="password" id="pword" name="password" placeholder="Your Password..">
   
-  <input type = "submit" value="login">
-  
-</form>
+  <form action="login_page.php" method="post">
+    <table>
+      <tr>
+        <td>
+          <label for="uname">User Name</label>
+          <input type="text" id="uname" name="username" placeholder="Your User name..">
 
-<h2>
-  For New Customers...
-</h2>
-<a href="customer_signup.html"><button type="button">Are you new and want to get hair design anywhere?</button></a>
+          <label for="pword">Password</label>
+          <input type="password" id="pword" name="password" placeholder="Your Password..">
+          <p id="text">WARNING! Caps lock is ON.</p>
+        </td>
+        <td>
+          <input type = "submit" value="login">
+        </td>
+      </tr>
+    </table> 
+    <a href="customer_signup.html"><button type="button">Sign-up for free</button></a>
+  </form>
+
+      
+
+
+<script>
+  // Get the input field
+  var input = document.getElementById("pword");
+
+  // Get the warning text
+  var text = document.getElementById("text");
+
+  // When the user presses any key on the keyboard, run the function
+  input.addEventListener("keyup", function(event) {
+
+    // If "caps lock" is pressed, display the warning text
+    if (event.getModifierState("CapsLock")) {
+      text.style.display = "block";
+    } else {
+      text.style.display = "none"
+    }
+  });  
+</script>
 
 </body>
 </html>

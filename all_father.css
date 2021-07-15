@@ -11,6 +11,7 @@ input[type=submit] {
     cursor: pointer;
     font-size: 30;
     font-family: "Calligraffitti",serif;
+    transition: 0.3s;
 }
   
 input[type=submit]:hover {
@@ -25,8 +26,7 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-family: "Amatic SC", serif;
-    font-size: 60;
+    font-size: 16;
   }
 
 label {
@@ -44,7 +44,7 @@ input[type=password], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 40;
+    font-size: 16;
 }
 
 input[type=date], select {
@@ -104,6 +104,7 @@ button {
     cursor: pointer;
     font-family: "Calligraffitti",serif;
     font-size: 30;
+    transition: 0.3s;
 }
 
 button:hover 
@@ -114,6 +115,7 @@ button:hover
   
 body {
     background: linear-gradient(to bottom, lightblue, pink 100%);
+    
 }
 
 h1 {
@@ -122,7 +124,7 @@ h1 {
     border: 1px solid rgb(226, 238, 171);
     text-align:center;
     font-size:50;
-    font-family: "Aguafina Script", serif;
+    font-family: "Amatic SC", serif;
 }
 
 h2 {
@@ -132,6 +134,39 @@ h2 {
     font-family: "Alegreya SC", serif;
 }
 
+div table {
+    color :black;
+}
+
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #c4eeb0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    transition: 0.3s;
   }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}

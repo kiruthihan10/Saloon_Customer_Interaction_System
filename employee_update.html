@@ -2,11 +2,20 @@
 <head>
 <link rel="stylesheet" href="employee_update.css">
 <link rel="stylesheet" href="all_father.css">
+<script src="login_check.js"></script>
+<script>
+    function auth()
+    {
+        check_login();
+        check_admin();
+        nav();
+    }
+</script>
 </head>
-<body>
+<body id="bdy" onload="auth()">
 
 <h1>Thank you for Joining our HSCMS</h1>
-
+<div class="topnav" id="topnav"></div>
 <form action="employee_update.php" method="post">
 
     <label for="username">Name</label>
@@ -18,12 +27,12 @@
     <label for="pword">Password</label>
     <input type="password" id="pword" name="password" placeholder="Employee's Password..">
 
-    <input type="submit" value="Join">
+    <input type="submit" value="Change">
 </form>
 
 <form action="delete.php" method="post">
     <label for = "Name">Name</label>
-    <input type="button" value="Delete">
+    <input type="submit" value="Delete">
 </form>
 </body>
 </html>

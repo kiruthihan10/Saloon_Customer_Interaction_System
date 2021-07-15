@@ -20,88 +20,28 @@ th {text-align: left;}
 
 <?php
 
-
+include_once "user_class.php";
 session_start();
+if($_SESSION["user_class"]=="customer")
+{
+  $user = new customer($_SESSION["uname"]);
+}
+else if($_SESSION["user_class"]=="employee")
+{
+  $user = new employee($_SESSION["uname"]);
+}
 $uname = $_SESSION["uname"];
 $user_class = $_SESSION["user_class"];
 $d = date("y-m-d");
 $t = date('H:i:s',time());
-
+echo "Date is :";
 echo $d;
+echo "<br>";
+echo "Time is :";
 echo $t;
 
-include 'config.php';
+$user->get_past_appointments_from_db_as_table();
 
-if ($user_class =="customer"){
-  echo "<table>
-  <tr>
-  <th>Date</th>
-  <th>Time</th>
-  <th>Designer Name</th>
-  <th>Saloon Name</th>
-  <th>Saloon Phone Number</th>
-  <th>Hair Cut</th>
-  <th>Shave</th>
-  <th>Massage</th>
-  <th>Dye</th>
-  </tr>";
-    $sql = "SELECT * FROM appointment
-    INNER JOIN users ON users.User_ID = appointment.employee_ID
-    INNER JOIN employee ON appointment.employee_ID = employee.User_ID
-    INNER JOIN saloon ON employee.Saloon_ID = saloon.Saloon_ID
-    WHERE appointment.customer_ID='$uname' AND appointment.dop < CURRENT_DATE()
-    ORDER BY appointment.dop";
-    
-    $result = $conn->query($sql);
-    while ($appointment = $result->fetch_assoc()){
-        echo "<tr>";
-        echo "<td>" . $appointment['dop'] . "</td>";
-        echo "<td>" . $appointment['toa'] . "</td>";
-        echo "<td>" . $appointment['Name'] . "</td>";
-        echo "<td>" . $appointment['Saloon_Name'] . "</td>";
-        echo "<td>" . $appointment['Phone_Number'] . "</td>";
-        echo "<td>" . $appointment['hair_cut'] . "</td>";
-        echo "<td>" . $appointment['shave'] . "</td>";
-        echo "<td>" . $appointment['Massage'] . "</td>";
-        echo "<td>" . $appointment['dye'] . "</td>";
-        echo "<td><input type='radio' name='selected_appointment' value=" . $appointment['AppointmentID'] . "></input></td>";
-        echo "</tr>";
-    }
-}
-else if ($user_class =="employee"){
-  echo "<table>
-  <tr>
-  <th>Date</th>
-  <th>Time</th>
-  <th>Client's Name</th>
-  <th>Client's Phone Number</th>
-  <th>Hair Cut</th>
-  <th>Shave</th>
-  <th>Massage</th>
-  <th>Dye</th>
-  </tr>";
-  $sql = "SELECT appointment.dop, appointment.toa, appointment.hair_cut, appointment.shave,appointment.Massage,appointment.dye, users.Name,users.Phone_Number
-  FROM appointment
-  INNER JOIN users ON users.User_ID = appointment.customer_ID
-  WHERE appointment.employee_ID='$uname' AND appointment.dop<CURRENT_DATE()
-  ORDER BY appointment.dop";
-  $result = $conn->query($sql);
-  while ($appointment = $result->fetch_assoc()){
-      echo "<tr>";
-      echo "<td>" . $appointment['dop'] . "</td>";
-      echo "<td>" . $appointment['toa'] . "</td>";
-      echo "<td>" . $appointment['Name'] . "</td>";
-      echo "<td>" . $appointment['Phone_Number'] . "</td>";
-      echo "<td>" . $appointment['hair_cut'] . "</td>";
-      echo "<td>" . $appointment['shave'] . "</td>";
-      echo "<td>" . $appointment['Massage'] . "</td>";
-      echo "<td>" . $appointment['dye'] . "</td>";
-      echo "<td><input type='radio' name='selected_appointment' value=" . $appointment['AppointmentID'] . "></input></td>";
-      echo "</tr>";
-  }
-}
-
-echo "</table>";
 ?>
 </body>
 </html>

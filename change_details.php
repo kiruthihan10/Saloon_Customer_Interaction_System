@@ -1,33 +1,23 @@
 <?php
-    include 'config.php';
+    include_once "user_class.php";
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      $uname = $_POST["username"];
-      $pw = $_POST["password"];
-      $pw = password_hash($pw,PASSWORD_DEFAULT);
-      $name = $_POST["Name"];
-      $phoneno = $_POST["PhoneNum"];
-      $mail = $_POST["email"];
-
-      $sql = "UPDATE Users (Password,Name,Phone_Number) VALUES ('$pw','$name','$phoneno') WHERE User_ID = '$uname'";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+      session_start();
+      $user = new admin($_SESSION["uname"]);
+      if ($user->is_admin()==False)
+      {
+        $user = new customer($_SESSION["uname"]);
+        if ($user->is_customer()==False)
+        {
+          $user = new employee($_SESSION["uname"]);
+        }
       }
-      
-      $user_class = $_SESSION["user_class"];
-      $sql = "UPDATE '$user_class' (email) VALUES ('$mail') WHERE User_ID = '$uname'";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-      
-      $conn->close();
-      #header("Location: login_page.html");
-      #exit();
+      $user->setpw($_POST["password"]);
+      $user->setname($_POST["Name"]);
+      $user->setphoneno($_POST["PhoneNum"]);
+      $user->updateintodb();
+    
+      header("Location: login_page.html");
+      exit();
 
     }
 ?>

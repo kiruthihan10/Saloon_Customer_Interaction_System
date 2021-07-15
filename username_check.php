@@ -19,16 +19,11 @@ th {text-align: left;}
 <body>
 
 <?php
-
-$uname = $_GET["uname"];
-
-include 'config.php';
-
-$sql = "SELECT * FROM users WHERE User_ID = '$uname'";
-
-$result = $conn->query($sql);
-if ($result->num_rows!=0){
-    echo "Username Already Taken";
+include "user_class.php";
+$user = new user($_GET["uname"]);
+if ($user->is_user())
+{
+  echo "Username Already Taken";
 }
 
 ?>

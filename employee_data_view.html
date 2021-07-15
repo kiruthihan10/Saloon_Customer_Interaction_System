@@ -1,14 +1,17 @@
 <html>
 <head>
 <link rel="stylesheet" href="all_father.css">
-<link rel="stylesheet" href="make_appointment.css">
+<link rel="stylesheet" href="employee_data_view.css">
+<script src="login_check.js"></script>
 </head>
-<body>
-
+<body id="bdy" onload="check_login()">
 
     <script>
 
         function showoptions() {
+                check_login();
+                check_admin();
+                nav()
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -23,13 +26,12 @@
     </script>
 
 <h1>Fill your preferences to check availablity</h1>
-
-<form method = "post" action="make_appointment.php">
+<div class="topnav" id="topnav"></div>
+<form>
     <label for="employee_ID">Enter Employee User ID</label>
-    <input type="text" id="employee_ID" name="employee_ID">
+    <input type="text" id="employee_ID" name="employee_ID" placeholder="Search...">
     
     <div id="txtHint"><b><h2>Employee Details will be displayed here</h2></b></div>
-    <input type="submit" value="Book">
 
 </form>
 

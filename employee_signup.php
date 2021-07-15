@@ -1,33 +1,20 @@
 <?php
     include 'config.php';
-    include 'data_preprocessing.php';
+    include_once 'saloon_class.php';
+    include_once 'user_class.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      $uname = text_preprocessing(strtolower($_POST["username"]));
-      $pw = $_POST["password"];
-      $pw = password_hash($pw,PASSWORD_DEFAULT);
-      $name = text_preprocessing($_POST["Name"]);
-      $phoneno = text_preprocessing($_POST["PhoneNum"]);
-      $salary = $_POST["salary"];
       session_start();
-      $saloon = text_preprocessing($_SESSION["saloon"]);
-      $sql = "INSERT INTO Users (User_ID,Pword,Name,Phone_Number) VALUES ('$uname','$pw','$name','$phoneno')";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-        echo "<br>";
-      }
+      $user = new employee($_POST["username"]);
+      $user->setpw($_POST["password"]);
+      $user->setname($_POST["Name"]);
+      $user->setphoneno($_POST["PhoneNum"]);
+      $user->set_salary($_POST["salary"]);
+      echo$_SESSION["saloon"];
+      $saloon = new saloon($_SESSION["saloon"]);
+      $user->set_saloon($saloon);
+      $user->addintodb();
+      $user->add_into_table();
       
-      $sql = "INSERT INTO employee (User_ID,Salary,Saloon_ID) VALUES ('$uname','$salary','$saloon')";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-      
-      $conn->close();
       header("Location: login_page.html");
       exit();
 

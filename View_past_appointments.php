@@ -20,15 +20,22 @@
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
+            
         } 
-        else if ($user_class=="employee"){
+        else if ($user_class=="employee")
+        {
             $sql = "UPDATE appointment SET customer_rating = '$rating' WHERE AppointmentID = '$appointment_ID'";
-            if ($conn->query($sql) === TRUE) {
+            if ($conn->query($sql) === TRUE)
+            {
                 echo "record updated successfully";
-            } else {
+            }
+            else
+            {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-        } 
+        }
+        header("Location: View_past_appointments.html");
+        exit(); 
         
         
         

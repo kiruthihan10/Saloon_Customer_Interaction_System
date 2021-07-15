@@ -1,9 +1,14 @@
 <html>
 <head>
-<link rel="stylesheet" href="employee_interface.css">
 <link rel="stylesheet" href="all_father.css">
+<link rel="stylesheet" href="employee_interface.css">
+
+<script src="login_check.js"></script>
 <script>
     function showHint() {
+        check_login();
+        check_employee();
+        nav();
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -16,14 +21,17 @@
 </script>
 
 </head>
-<body onload=showHint()>
+<body id="bdy" onload=showHint()>
 
 <h1>Welcome Employee</h1>
+<div class="topnav" id="topnav"></div>
 <!-- Replace Customer with Customer name in jscript or PHP-->
 
 <a href="upcoming_appointment.html"><button type="button">View Upcomming Appointments</button></a><!-- Haven't done yet-->
 <a href="change_details.html"><button type="button">Change your personal Info</button></a>
 <a href="employee_signup.html"><button type="button">Add new Employee in your Saloon</button></a>
+<a href="View_past_appointments.html"><button type="button">View past Appointments</button></a>
+
 <br>
 <br>
 <h2>
@@ -33,6 +41,6 @@
 <div id="rating">
     4.8
 </div>
-<!-- Rating for each user come here-->
+<a href="logout.php"><button type="button" id="logout">Logout</button></a>
 </body>
 </html>

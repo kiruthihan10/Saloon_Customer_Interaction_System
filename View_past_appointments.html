@@ -1,12 +1,11 @@
 <html>
 <head>
-    
-    <link rel="stylesheet" href="all_father.css">
-    <link rel="stylesheet" href="make_appointment.css">
-</head>
-<body onload="showoptions()">
+    <script src="login_check.js"></script>
     <script>
         function showoptions() {
+                check_login();
+                check_emp_or_cust();
+                nav()
                 document.getElementById("txtHint").innerHTML="hello";
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
@@ -17,13 +16,22 @@
                 xmlhttp.open("GET","past_appointments.php?",true);
                 xmlhttp.send();
             }   
+        
+    </script>
+    <link rel="stylesheet" href="all_father.css">
+    <link rel="stylesheet" href="make_appointment.css">
+</head>
+<body id="bdy" onload="showoptions(this)">
+    <script>
+        
     </script>
     <h1>Your upcoming Appointments are</h1>
+    <div class="topnav" id="topnav"></div>
     <form action="View_past_appointments.php" method="post">
         <div id="txtHint">Date should be here</div>
 
         <label for="rating">Rating:</label>
-        <input type="" name="rating" id="rating" value=2.5></input>
+        <input type="number" name="rating" id="rating" value=2.5 min="0"></input>
         <input type="submit" value="Rate">
     </form>
 </body>

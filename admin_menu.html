@@ -1,20 +1,31 @@
 <html>
-<head>
-<link rel="stylesheet" href="admin_menu.css">
-<link rel="stylesheet" href="all_father.css">
-</head>
-<body>
+    <head>
+        <link rel="stylesheet" href="admin_menu.css">
+        <link rel="stylesheet" href="all_father.css">
+        <script src="login_check.js"></script>
+        <script>
+            function auth()
+            {
+                check_login();
+                check_admin();
+                nav();
+            }
+        </script>
+    </head>
+    <body id="bdy" onload="auth()">
+        
 
-<h1>Welcome Admin</h1>
-<!-- Replace Customer with Customer name in jscript or PHP-->
+        <h1>Welcome Admin</h1>
+        <!-- Replace Customer with Customer name in jscript or PHP-->
+        <div class="topnav" id="topnav">
+        </div>
 
-
-<a href="saloon_payment.html"><button type="button">Check Saloon Payments</button></a><!-- Haven't done yet-->
-<a href="employee_update.html"><button type="button">Change Password of employee</button></a>
-<a href="employee_data_view.html"><button type="button">View details of employees</button></a>
-<a href="change_details.html"><button type="button">Change your personal Info</button></a>
-<a href="saloon_signup.html"><button type="button">Add new saloon</button></a>
-<a href="admin_signup.html"><button type="button">Add new Admin</button></a>
-
-</body>
+        <a href="saloon_payment.html"><button type="button">Check Saloon Payments</button></a><!-- Haven't done yet-->
+        <a href="employee_update.html"><button type="button">Change Password of employee</button></a>
+        <a href="employee_data_view.html"><button type="button">View details of employees</button></a>
+        <a href="change_details.html"><button type="button">Change your personal Info</button></a>
+        <a href="saloon_signup.html"><button type="button">Add new saloon</button></a>
+        <a href="admin_signup.html"><button type="button">Add new Admin</button></a>
+        <a href="logout.php"><button type="button" id="logout">Logout</button></a>
+    </body>
 </html>

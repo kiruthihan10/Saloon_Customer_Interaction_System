@@ -2,11 +2,79 @@
 <head>
 <link rel="stylesheet" href="all_father.css">
 <link rel="stylesheet" href="make_appointment.css">
-</head>
-<body>
+<script src="login_check.js"></script>
+<script>
+    function auth()
+    {
+        check_login();
+        check_customer();
+        nav();
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
 
+        today = yyyy+'-'+mm+'-'+dd;
+        console.log(today);
+        document.getElementById("Date").min=today;
+    }        
+</script>
+</head>
+<body id="bdy" onload="auth()">
 
     <script>
+
+        function time_check(t)
+        {
+            if (t.value<t.min){
+                alert("Saloons open after "+t.min);
+                hide_buttons();
+            }
+            else if(t.value>t.max)
+            {
+                alert("saloons close before "+t.max);
+                hide_buttons();
+            }
+            else
+            {
+                show_buttons();
+            }
+        }
+        
+        function hide_buttons()
+        {
+            document.getElementById("check").style.visibility = "hidden";
+            document.getElementById("btn_submit").style.visibility = "hidden";
+        }
+
+        function show_buttons()
+        {
+            document.getElementById("check").style.visibility = "visible";
+            document.getElementById("btn_submit").style.visibility = "visible";
+        }
+        
+        function any_select()
+        {
+            penalty_cost();
+            var current_price = document.getElementById("price").innerHTML;
+           
+            if (current_price!=0)
+            {
+                show_buttons();
+            }
+            else
+            {
+                hide_buttons();
+            }
+            
+        }
+        
         function haircut_check(checkbox){
             var status = checkbox.checked;
             if (status){
@@ -15,6 +83,7 @@
             else{
                 document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-150
             }
+            any_select();
         }
 
         function shave_check(checkbox){
@@ -25,6 +94,7 @@
             else{
                 document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-100
             }
+            any_select();
         }
 
         function massage_check(checkbox){
@@ -35,9 +105,11 @@
             else{
                 document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-75
             }
+            any_select();
         }
 
         function dye_check(checkbox){
+            
             var status = checkbox.checked;
             if (status){
                 document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)+200
@@ -45,38 +117,52 @@
             else{
                 document.getElementById("price").innerHTML=parseInt(document.getElementById("price").innerHTML)-200
             }
+            any_select();
         }
 
-        function showoptions() {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
+        function showoptions()
+        {
+            var xmlhttp = new XMLHttpRequest();
+                
+            xmlhttp.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
                     document.getElementById("txtHint").innerHTML = this.responseText;
                 }
-                };
-                
-                
-                var d = document.getElementById("Date").value;
-                var t = document.getElementById("Time").value;
-                var loc = document.getElementById("District").value;
-                var rating = document.getElementById("Rating").value;
-                var shave = document.getElementById("Shave").value;
-                var hair_cut = document.getElementById("Hair_Cut").value;
-                var massage = document.getElementById("Massage").value;
-                var dye = document.getElementById("Dye").value;
-                xmlhttp.open("GET","make_appointment_check.php?Date="+d+"&Time="+t+"&Location="+loc+"&Rating="+rating+"&Shave="+shave+"&Hair_Cut="+hair_cut+"&Massage="+massage+"&Dye="+dye,true);
-                xmlhttp.send();
-            }
-
-        function showoptions(){
-            return window.setInterval(showoptions, 1000);
+            };
+                                
+            var d = document.getElementById("Date").value;
+            var t = document.getElementById("Time").value;
+            var loc = document.getElementById("District").value;
+            var rating = document.getElementById("Rating").value;
+            var shave = document.getElementById("Shave").value;
+            var hair_cut = document.getElementById("Hair_Cut").value;
+            var massage = document.getElementById("Massage").value;
+            var dye = document.getElementById("Dye").value;
+            xmlhttp.open("GET","make_appointment_check.php?Date="+d+"&Time="+t+"&Location="+loc+"&Rating="+rating+"&Shave="+shave+"&Hair_Cut="+hair_cut+"&Massage="+massage+"&Dye="+dye,true);
+            xmlhttp.send();
         }
-        
+
+        function penalty_cost()
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var rating = parseInt(this.responseText);
+                    var fine = 0.05*(5-rating);
+                    document.getElementById("price_with_fine").innerHTML = "Rs"+document.getElementById("price").innerHTML*(1+fine);                    
+                }
+
+            };
+            xmlhttp.open("GET","penalize.php?",true);
+            xmlhttp.send();
+        }
 
     </script>
 
 <h1>Fill your preferences to check availablity</h1>
-
+<div class="topnav" id="topnav"></div>
 <form method = "post" action="make_appointment.php">
 
     <label for="District">Which district you will be?</label>
@@ -119,10 +205,11 @@
     </select>
 
     <label for="Time">When do you want to book?</label>
-    <input type="time" id="Time" name="Time" value="11:17">
+    <input type="time" id="Time" name="Time" min="08:00" max="18:00" onchange="time_check(this)">
+
 
     <label for="Date">Date of the Appointment</label>
-    <input type="date" id="Date" name="Date" value="1997-10-10">
+    <input type="date" id="Date" name="Date" value="2021-03-04">
 
     
     <center><label for="Hair_Cut">Do you need a hair cut?</label></center>
@@ -132,7 +219,7 @@
 
     <center><label for="Shave">Do you need a Shave?</label></center>
     <input type="checkbox" id="Shave" name="service[]" value = "Shave" onchange="shave_check(this)">
-
+    
     <br>
 
     <center><label for="Massage">Do you need a Massage?</label></center>
@@ -144,18 +231,24 @@
     <input type="checkbox" id="Dye" name="service[]" value = "Dye" onchange="dye_check(this)">
     
     <div id="txtHint"><b><h2>availablity will be displayed here...</h2></b></div>
-    <input type="submit" value="Book">
+    <input type="submit" value="Book" id="btn_submit" style='visibility: hidden'>
     
 </form>
 
 
-<button id="check" onclick="showoptions()" >Check availablity</button>
+<button id="check" name = "check" onclick="showoptions()" style='visibility: hidden'>Check availablity</button>
 
 <h2>
     Total Price is
 </h2>
 
 <h3 id="price">
+    00
+</h3>
+<br>
+<h2>Price for your rating</h2>
+<br>
+<h3 id="price_with_fine">
     00
 </h3>
 

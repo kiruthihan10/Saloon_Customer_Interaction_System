@@ -1,27 +1,31 @@
 <html>
-<head>
-<link rel="stylesheet" href="change_details.css">
-<link rel="stylesheet" href="all_father.css">
-</head>
-<body>
+    <head>
+        <link rel="stylesheet" href="change_details.css">
+        <link rel="stylesheet" href="all_father.css">
+        <script src="login_check.js"></script>
+        <script>
+            function auth()
+            {
+                check_login();
+                nav();
+            }
+        </script>
+    </head>
+    <body id="bdy" onload="auth()">
+        <h1>Update your new information here</h1>
+        <div class="topnav" id="topnav"></div>
+        <form action="change_details.php" method="post">
 
-<h1>Thank you for Joining our HSCMS</h1>
+            <label for="Name">Name</label>
+            <input type="text" id="Name" name="Name" placeholder="Your Name..">
 
-<form action="change_details.php" method="post">
+            <label for="Phone_No">Phone Number</label>
+            <input type="text" id="Phone_No" name="PhoneNum" placeholder="Your Phone No..">
 
-    <label for="Name">Name</label>
-    <input type="text" id="Name" name="Name" placeholder="Your Name..">
+            <label for="pword">Password</label>
+            <input type="password" id="pword" name="password" placeholder="Your Password..">
 
-    <label for="Phone_No">Phone Number</label>
-    <input type="text" id="Phone_No" name="PhoneNum" placeholder="Your Phone No..">
-
-    <label for="mail">Email Address</label>
-    <input type="text" id="mail" name="email" placeholder="Your email..">
-
-    <label for="pword">Password</label>
-    <input type="password" id="pword" name="password" placeholder="Your Password..">
-
-    <input type="submit" value="Join">
-</form>
-</body>
+            <input type="submit" value="Change">
+        </form>
+    </body>
 </html>

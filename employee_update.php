@@ -1,32 +1,20 @@
 <?php
-    include 'config.php';
+    include 'user_class.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      $uname = $_POST["username"];
-      $pw = $_POST["password"];
-      $pw = password_hash($pw,PASSWORD_DEFAULT);
-      $salary = $_POST["salary"];
       session_start();
-      $saloon = $_SESSION["saloon"];
+
+      $user =new employee($_POST["username"]);
+      $user->getfromdb();
+      $user->get_from_table();
+      $user->setpw($_POST["password"]);
+      $user->set_salary($_POST["salary"]);
+      $saloon = new saloon($_SESSION["saloon"]);
+      $user->set_saloon($saloon);
+      $user->updateintodb();
+      $user->update_table();
       
-      $sql = "UPDATE Users (Password) VALUES ('$pw') WHERE User_ID = '$uname'";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-
-      $sql = "UPDATE employee SET (Salary) VALUES ('$salary') WHERE User_ID = '$uname'";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-      
-      $conn->close();
-      #header("Location: login_page.html");
-      #exit();
+      header("Location: Employee_interface.html");
+      exit();
 
     }
 ?>

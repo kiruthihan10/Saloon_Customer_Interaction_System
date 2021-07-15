@@ -4,9 +4,13 @@
 <link rel="stylesheet" href="customer_menu.css">
 <link rel="stylesheet" href="all_father.css">
 
+<script src="login_check.js"></script>
 
 <script>
     function showHint() {
+        check_login();
+        check_customer();
+        nav();
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -19,11 +23,11 @@
 </script>
 
 </head>
-<body onload=showHint()>
+<body id="bdy" onload=showHint()>
 
 <h1>Welcome Customer</h1>
 <!-- Replace Customer with Customer name in jscript or PHP-->
-
+<div class="topnav" id="topnav"></div>
 
 <a href="make_appointment.html"><button type="button">Make a New Appointment</button></a><!-- Haven't done yet-->
 <a href="upcoming_appointment.html"><button type="button">View Upcomming Appointments</button></a><!-- Haven't done yet-->

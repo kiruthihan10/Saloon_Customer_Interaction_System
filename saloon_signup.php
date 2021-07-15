@@ -1,27 +1,17 @@
 <?php
     include 'config.php';
+    include 'saloon_class.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      $name = $_POST["Name"];
-      $phoneno = $_POST["PhoneNum"];
-      $loc = $_POST["Location"];
-
+      $saloon = new saloon(Null);
+      $saloon->setname($_POST["Name"]);
+      $saloon->setphoneno($_POST["PhoneNum"]);
+      $saloon->setloc($_POST["Location"]);
       session_start();
-      $agent_id = $_SESSION["uname"];
+      $saloon->setagent_id( $_SESSION["uname"]);
 
-      $sql = "INSERT INTO saloon (Saloon_Name,Location,Phone_Number,Agent_ID) VALUES ('$name','$loc','$phoneno','$agent_id')";
+      $saloon->addintodb();
 
-      if ($conn->query($sql) === TRUE) {
-        $saloon = $conn->insert_id;
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-
-      $conn->close();
-
-      session_start();
-
-      $_SESSION["saloon"]=$saloon;
+      $_SESSION["saloon"]=$saloon->getID();
 
       header("Location: employee_signup.html");
       exit();

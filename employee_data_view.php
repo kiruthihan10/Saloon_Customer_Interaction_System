@@ -26,27 +26,11 @@ echo "<table>
 <th>Saloon</th>
 <th>Phone Number</th>
 </tr>";
-
-$emp_id = $_GET["emp_id"];
-
-include 'config.php';
-
-$sql = "SELECT * FROM employee
-INNER JOIN users ON users.User_ID = employee.User_ID
-INNER JOIN saloon ON saloon.Saloon_ID =  employee.Saloon_ID
-WHERE employee.UserID = '$emp_id'
-";
-
-$result = $conn->query($sql);
-while($employee = $result->fetch_assoc()){
-
-    echo "<tr>";
-    echo "<td>" . $employee['Name'] . "</td>";
-    echo "<td>" . $employee['Saloon_Name'] . "</td>";
-    echo "<td>" . $employee['Phone_Number'] . "</td>";
-    echo "</tr>";
-  
-}
+include 'user_class.php';
+$user = new employee($_GET["emp_id"]);
+$user->get_from_table();
+$user->getfromdb();
+$user->get_table_data();
 echo "</table>";
 ?>
 </body>

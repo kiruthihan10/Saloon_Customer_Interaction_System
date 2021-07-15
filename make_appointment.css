@@ -39,6 +39,7 @@ button {
 table{
     border: 1px solid white;
     color: white;
+    margin: 8px 0;
 }
 
 label{
