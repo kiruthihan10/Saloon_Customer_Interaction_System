@@ -3,6 +3,9 @@
     include_once 'user_class.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $app = new apoointment(NULL);
+        if(!isset($_POST["Time"])) {
+            header("Location: make_appointment.html");
+        }
         $app->setTime($_POST["Time"]);
         $app->setDate($_POST["Date"]);
         $service = $_POST["service"];
@@ -40,8 +43,13 @@
         $app->setdye($Dye);
         session_start();
         $app->set_customer($_SESSION["uname"]);
+        if (!isset($_POST["selected_employee"]))
+        {
+            header("Location: make_appointment.html");
+        }
         $app->set_employee($_POST["selected_employee"]);
         $app->addintodb();
+        
         
         header("Location: customer_menu.html");
         exit();
