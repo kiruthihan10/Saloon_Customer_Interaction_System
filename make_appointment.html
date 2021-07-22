@@ -55,8 +55,11 @@
 
         function show_buttons()
         {
-            document.getElementById("check").style.visibility = "visible";
-            document.getElementById("btn_submit").style.visibility = "visible";
+            if ((document.getElementById("Hair_Cut").checked) || (document.getElementById("Shave").checked) || (document.getElementById("Massage").checked) || (document.getElementById("Dye").checked))
+            {
+                document.getElementById("check").style.visibility = "visible";
+                document.getElementById("btn_submit").style.visibility = "visible";
+            }
         }
         
         function any_select()
@@ -205,11 +208,11 @@
     </select>
 
     <label for="Time">When do you want to book?</label>
-    <input type="time" id="Time" name="Time" min="08:00" max="18:00" onchange="time_check(this)">
+    <input type="time" id="Time" name="Time" min="08:00" max="18:00" onchange="time_check(this)" required>
 
 
     <label for="Date">Date of the Appointment</label>
-    <input type="date" id="Date" name="Date" value="2021-03-04">
+    <input type="date" id="Date" name="Date" value="2021-03-04" required>
 
     
     <center><label for="Hair_Cut">Do you need a hair cut?</label></center>
@@ -239,7 +242,7 @@
 <button id="check" name = "check" onclick="showoptions()" style='visibility: hidden'>Check availablity</button>
 
 <h2>
-    Total Price is
+    Total Price in Rupees
 </h2>
 
 <h3 id="price">

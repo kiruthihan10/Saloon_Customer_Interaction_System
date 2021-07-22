@@ -72,8 +72,7 @@ th {text-align: left;}
           if ($row["dye"]){
             $time += 20;
           }
-
-          if(((strtotime(strtotime($appointment_time) - $row["toa"]))>$time*60)==1) {}
+          if(((strtotime(strtotime($appointment_time) -strtotime($row["toa"])))>$time*60)==1) {}
           else{
             $available=false;
           }
@@ -90,7 +89,7 @@ th {text-align: left;}
           if ($dye){
             $expected_time += 20;
           }
-          if(((strtotime($row["toa"]-strtotime($appointment_time)))> $expected_time*60)==1) {}
+          if(((strtotime(strtotime($row["toa"])-strtotime($appointment_time)))> $expected_time*60)==1) {}
           else{
             $available=false;
           }
