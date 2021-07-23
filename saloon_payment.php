@@ -5,6 +5,6 @@
     $payment->setcash($_POST["Cost"]);
     $payment->setdate(date("Y-m-d"));
     $payment->addintodb();
-    header("Location: admin_menu.html");
+    header("Location: saloon_payment.html");
     exit();
 ?>

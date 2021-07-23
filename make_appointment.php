@@ -50,8 +50,7 @@
         $app->set_employee($_POST["selected_employee"]);
         $app->addintodb();
         
-        
-        header("Location: customer_menu.html");
+        header("Location: upcoming_appointment.html");
         exit();
 
     }

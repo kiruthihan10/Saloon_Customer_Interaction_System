@@ -80,6 +80,23 @@ function check_emp_or_cust()
     xmlhttp.send();
 } 
 
+function check_emp_or_admin()
+{
+    var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                if (this.responseText!="customer" && this.responseText!="system_admins")
+                {
+                    document.getElementById("bdy").innerHTML ='<meta http-equiv = "refresh" content = "3; url = login_page.html" />';;
+                }
+                
+            }
+        };
+    xmlhttp.open("GET","check_user_cat.php?",true);
+    xmlhttp.send();
+}
+
 function nav()
 {
     var xmlhttp = new XMLHttpRequest();

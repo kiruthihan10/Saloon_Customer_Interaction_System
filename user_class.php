@@ -287,7 +287,9 @@
         public function add_into_table()
         {
             include "config.php";
-            $saloon_ID = $this->saloon->getID();
+            $saloon = $this->saloon;
+            $saloon_ID = $saloon->getID();
+            echo $saloon_ID;
             $sql = "INSERT INTO employee (User_ID,Salary,Saloon_ID) VALUES ('$this->uname','$this->salary','$saloon_ID')";
 
             if ($conn->query($sql) === True) {
@@ -348,6 +350,12 @@
 
         public function get_saloon()
         {
+            include "config.php";
+            $sql = "SELECT Saloon_ID FROM employee WHERE User_ID = '$this->uname'";
+            echo$sql;
+            $result = $conn->query($sql);
+            $result = $result->fetch_assoc();
+            $this->saloon = new Saloon($result["Saloon_ID"]);
             return $this->saloon;
         }
 

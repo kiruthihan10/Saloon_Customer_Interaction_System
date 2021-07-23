@@ -7,10 +7,10 @@
       $user->setname($_POST["Name"]);
       $user->setphoneno($_POST["PhoneNum"]);
       $user->set_email($_POST["email"]);
-      //$user->addintodb();
+      $user->addintodb();
       $user->add_into_table();
 
-      header("Location: login_page.html");
+      header("Location: admin_menu.html");
       exit();
     }
 ?>

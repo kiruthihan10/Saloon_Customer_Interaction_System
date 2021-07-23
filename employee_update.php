@@ -13,7 +13,7 @@
       $user->updateintodb();
       $user->update_table();
       
-      header("Location: Employee_interface.html");
+      header("Location: admin_menu.html");
       exit();
 
     }

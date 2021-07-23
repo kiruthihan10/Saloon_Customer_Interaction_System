@@ -95,11 +95,18 @@ th {text-align: left;}
           }
         }
       }
+
+      $sql = "SELECT AVG(appointment.employee_rating) FROM appointment WHERE employee_ID = '$emp_id'";
+      $rating_result = $conn->query($sql);
+      while($rating_row = $rating_result->fetch_assoc()) {
+        $rating = $rating_row["AVG(appointment.employee_rating)"];
+      }
       
+
       if ($available){
         echo "<tr>";
         echo "<td>" . $employee['Name'] . "</td>";
-        echo "<td>" . $employee['employee_rating'] . "</td>";
+        echo "<td>" . $rating . "</td>";
         echo "<td>" . $employee['Saloon_Name'] . "</td>";
         echo "<td><input type='radio' name='selected_employee' value=" . $employee['User_ID'] . "></input></td>";
         echo "</tr>";
